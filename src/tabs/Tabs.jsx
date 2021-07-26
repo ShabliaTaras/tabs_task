@@ -1,92 +1,35 @@
 import React, { useState } from "react";
 import "../tabs/tabs.css";
+import { Tab } from "../tabs/Tab";
+
+const tabsArray = [
+  { index: 1, label: "Soft Skills" },
+  { index: 2, label: "Technical Skills" },
+  { index: 3, label: "Job Focus" },
+  { index: 4, label: "Functional Expertise" },
+  { index: 5, label: "Domain Expertise" },
+  { index: 6, label: "Patent Expertice" },
+  { index: 7, label: "Personal Expertise" },
+  { index: 8, label: "Hard Expertise" },
+  { index: 9, label: "Domain Expertise" },
+];
 
 export const Tabs = () => {
-  const [toggleState, setToggleState] = useState(1);
-
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   return (
     <>
       <div className="container">
+        <div className="background" />
+
         <div className="wrapper__tabs">
-          <div className="inner__tabs">
-            <div className="background" />
-            <div
-              className={
-                toggleState === 1 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(1)}
-            >
-              Soft Skills
-            </div>
-            <div
-              className={
-                toggleState === 2 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(2)}
-            >
-              Technical Skills
-            </div>
-            <div
-              className={
-                toggleState === 3 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(3)}
-            >
-              Job Focus
-            </div>
-            <div
-              className={
-                toggleState === 4 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(4)}
-            >
-              Functional Expertise
-            </div>
-            <div
-              className={
-                toggleState === 5 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(5)}
-            >
-              Domain Expertise
-            </div>
-            <div
-              className={
-                toggleState === 6 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(6)}
-            >
-              Patent Expertice
-            </div>
-            <div
-              className={
-                toggleState === 7 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(7)}
-            >
-              Personal Expertise
-            </div>
-            <div
-              className={
-                toggleState === 8 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(8)}
-            >
-              Hard Expertise
-            </div>
-            <div
-              className={
-                toggleState === 9 ? "inner__item active" : "inner__item"
-              }
-              onClick={() => toggleTab(9)}
-            >
-              Domain Expertise
-            </div>
-          </div>
+          {tabsArray.map((item) => (
+            <Tab
+              isActive={currentIndex === item.index}
+              toggleTab={() => setCurrentIndex(item.index)}
+              label={item.label}
+            />
+          ))}
         </div>
       </div>
     </>
